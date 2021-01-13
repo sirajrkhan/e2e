@@ -1,0 +1,17 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+# === Command for custom dockerfile is ====
+# docker build -f Dockerfile.dev .
+
+# and it should outside SRC folder :)
+# then delete node_modules directory
+
+# LATER: docker run -it -p 3000:3000 CONTAINER_ID
