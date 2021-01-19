@@ -20,6 +20,6 @@ deploy:
   on:
     branch: master
     
+  # Generate these keys in IAM @ AWS .... and then config @ Travis settings
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY 
-# secure: "$AWS_SECRET_KEY"
