@@ -2,10 +2,26 @@ sudo: required
 services:
   - docker
 
+language: generic
+
 before_install:
   - docker build -t sirajrkhan/e2e -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true sirajrkhan/e2e npm run test
 
-language: generic
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-581985205712"
+  bucket_path: "docker"
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
+
+# http://docker-env.eba-qjrnmkcf.ap-south-1.elasticbeanstalk.com/
